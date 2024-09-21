@@ -7,7 +7,7 @@ import dotenv from 'dotenv';
 import http from 'http';
 dotenv.config();
 import connectToMongo from './database/db';
-import router from './routes/Assets/movieRoutes';
+import router from './modules/user/user.routes';
 
 const app = express();
 connectToMongo();
@@ -26,7 +26,8 @@ app.use(cors({
     'allowedHeaders': ['Authorization', 'Content-Type']
 }))
 app.use(cors())
-app.use('/movie',router)
+
+app.use('/api/auth',router)
 
 const PORT = process.env.PORT || 8000;
 server.listen(PORT, () => {
